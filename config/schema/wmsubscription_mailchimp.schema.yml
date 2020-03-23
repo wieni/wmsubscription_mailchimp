@@ -1,0 +1,7 @@
+wmsubscription_mailchimp.settings:
+    type: config_object
+    label: Settings
+    mapping:
+        audience:
+            type: string
+            label: 'The Mailchimp audience to subscribe visitors to.'

@@ -5,7 +5,7 @@ wmsubscription_mailchimp
 [![Total Downloads](https://poser.pugx.org/wieni/wmsubscription_mailchimp/downloads)](https://packagist.org/packages/wieni/wmsubscription_mailchimp)
 [![License](https://poser.pugx.org/wieni/wmsubscription_mailchimp/license)](https://packagist.org/packages/wieni/wmsubscription_mailchimp)
 
-> Provides a [MailChimp](https://mailchimp.com) implementation for the
+> Provides a [Mailchimp](https://mailchimp.com) implementation for the
 > [wmsubscription](https://github.com/wieni/wmsubscription) module
 
 ## Installation
@@ -18,7 +18,7 @@ It can be installed using Composer:
  composer require wieni/wmsubscription_mailchimp
 ```
 
-Don't forget to provide a MailChimp API key through the 
+Don't forget to provide a Mailchimp API key through the 
 `wmsubscription_mailchimp.api_key` container parameter.
 
 ## Changelog

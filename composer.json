@@ -1,7 +1,7 @@
 {
     "name": "wieni/wmsubscription_mailchimp",
     "type": "drupal-module",
-    "description": "Provides a MailChimp implementation for the wmsubscription Drupal 8 module",
+    "description": "Provides a Mailchimp implementation for the wmsubscription Drupal 8 module",
     "license": "MIT",
     "authors": [
         {

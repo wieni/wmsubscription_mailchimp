@@ -17,7 +17,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * @SubscriptionTool(
- *     id = "mailchimp"
+ *     id = "mailchimp",
+ *     label = "Mailchimp",
  * )
  */
 class Mailchimp extends SubscriptionToolBase implements ContainerFactoryPluginInterface

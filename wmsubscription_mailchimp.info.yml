@@ -1,0 +1,7 @@
+name: wmsubscription_mailchimp
+type: module
+description: Provides a MailChimp implementation for the wmsubscription module
+core: 8.x
+package: Wieni
+dependencies:
+    - wmsubscription

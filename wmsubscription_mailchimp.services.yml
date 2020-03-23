@@ -1,0 +1,8 @@
+parameters:
+    wmsubscription_mailchimp.api_key: ''
+
+services:
+    wmsubscription_mailchimp.client:
+        class: DrewM\MailChimp\MailChimp
+        arguments:
+            - '%wmsubscription_mailchimp.api_key%'

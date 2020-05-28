@@ -39,8 +39,13 @@ class SettingsForm implements FormInterface, ContainerInjectionInterface
 
         $form['audience'] = [
             '#type' => 'textfield',
-            '#title' => 'Audience',
-            '#description' => 'The Mailchimp audience to subscribe visitors to.',
+            '#title' => $this->t('Audience ID', [], ['context' => 'Mailchimp']),
+            '#description' => $this->t(
+                'The Mailchimp audience to subscribe visitors to. For directions on how 
+                you can find your audience ID, please refer to the <a href="@websiteUrl" target="_blank" 
+                rel="noopener noreferer">Mailchimp website</a>.',
+                ['@websiteUrl' => 'https://mailchimp.com/help/find-audience-id'],
+            ),
             '#default_value' => $config->get('audience'),
             '#required' => 'true',
         ];

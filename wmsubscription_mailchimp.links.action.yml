@@ -1,0 +1,5 @@
+wmsubscription_mailchimp.mailchimp_audience.add_form:
+    route_name: 'entity.mailchimp_audience.add_form'
+    title: 'Add audience'
+    appears_on:
+        - entity.mailchimp_audience.collection

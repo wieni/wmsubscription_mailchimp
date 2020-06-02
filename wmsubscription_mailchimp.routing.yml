@@ -1,7 +1,0 @@
-wmsubscription_mailchimp.settings.form:
-    path: '/admin/config/services/subscription/mailchimp'
-    defaults:
-        _form: 'Drupal\wmsubscription_mailchimp\Form\SettingsForm'
-        _title: 'Mailchimp'
-    requirements:
-        _permission: 'administer wmsubscription messages'

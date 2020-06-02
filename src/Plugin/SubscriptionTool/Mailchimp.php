@@ -10,7 +10,7 @@ use Drupal\wmsubscription\Exception\ValidationFailedException;
 use Drupal\wmsubscription\ListInterface;
 use Drupal\wmsubscription\PayloadInterface;
 use Drupal\wmsubscription\SubscriptionToolBase;
-use Drupal\wmsubscription_mailchimp\Audience;
+use Drupal\wmsubscription_mailchimp\Entity\Audience;
 use Drupal\wmsubscription_mailchimp\Subscriber;
 use RuntimeException;
 use Symfony\Component\DependencyInjection\ContainerInterface;

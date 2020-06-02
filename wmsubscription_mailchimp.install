@@ -1,0 +1,41 @@
+<?php
+
+use Drupal\Core\Config\Entity\ConfigEntityType;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\wmsubscription_mailchimp\Entity\Audience;
+
+/**
+ * Install new config entity type
+ */
+function wmsubscription_mailchimp_update_8001()
+{
+    \Drupal::entityDefinitionUpdateManager()->installEntityType(new ConfigEntityType([
+        'id' => 'mailchimp_audience',
+        'label' => new TranslatableMarkup('Mailchimp audience'),
+        'config_prefix' => 'audience',
+        'admin_permission' => 'administer mailchimp audiences',
+        'entity_keys' => [
+            'id' => 'id',
+            'label' => 'label',
+        ],
+        'config_export' => [
+            'id',
+            'label',
+        ],
+    ]));
+}
+
+
+/**
+ * Migrate existing audience
+ */
+function wmsubscription_mailchimp_update_8002()
+{
+    $audience = \Drupal::config('wmsubscription_mailchimp.settings')->get('audience');
+
+    if (!$audience) {
+        return;
+    }
+
+    Audience::create(['id' => $audience, 'label' => 'Audience'])->save();
+}

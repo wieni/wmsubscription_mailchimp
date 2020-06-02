@@ -1,5 +1,5 @@
 wmsubscription_mailchimp.settings.form:
     title: Mailchimp
-    route_name: wmsubscription_mailchimp.settings.form
-    description: 'Configure the Mailchimp integration'
+    route_name: entity.mailchimp_audience.collection
+    description: 'Manage Mailchimp audiences'
     parent: wmsubscription

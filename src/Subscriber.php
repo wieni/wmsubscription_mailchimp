@@ -7,7 +7,7 @@ use Drupal\wmsubscription_mailchimp\Common\ContactStatus;
 
 class Subscriber extends PayloadBase
 {
-    /** @var string */
+    /** @var string|null */
     protected $langcode;
     /** @var array */
     protected $mergeFields;
@@ -20,7 +20,7 @@ class Subscriber extends PayloadBase
 
     public function __construct(
         string $email,
-        string $langcode,
+        ?string $langcode = null,
         array $mergeFields = [],
         array $interests = [],
         array $marketingPermissions = [],
@@ -34,12 +34,12 @@ class Subscriber extends PayloadBase
         $this->contactStatus = $contactStatus;
     }
 
-    public function getLangcode(): string
+    public function getLangcode(): ?string
     {
         return $this->langcode;
     }
 
-    public function setLangcode(string $value): self
+    public function setLangcode(?string $value): self
     {
         $this->langcode = $value;
         return $this;

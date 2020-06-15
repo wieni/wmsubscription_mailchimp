@@ -1,5 +1,5 @@
 wmsubscription_mailchimp.settings.form:
-    title: Mailchimp
+    title: Mailchimp audiences
     route_name: entity.mailchimp_audience.collection
     description: 'Manage Mailchimp audiences'
     parent: wmsubscription

@@ -10,8 +10,8 @@ class AudienceListBuilder extends ConfigEntityListBuilder
     public function buildHeader(): array
     {
         $header = [];
-        $header['label'] = $this->t('Audience');
-        $header['id'] = $this->t('Machine name');
+        $header['label'] = $this->t('Name');
+        $header['id'] = $this->t('Audience ID', [], ['context' => 'Mailchimp']);
 
         return $header + parent::buildHeader();
     }

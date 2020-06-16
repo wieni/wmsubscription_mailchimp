@@ -68,7 +68,7 @@ class Webhook
             return $_ENV['MAILCHIMP_WEBHOOK'];
         }
 
-        return Url::fromRoute('wmcustom.mailchimp.webhook')
+        return Url::fromRoute('wmsubscription_mailchimp.webhook')
             ->setAbsolute()
             ->toString();
     }

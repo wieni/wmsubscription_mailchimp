@@ -1,0 +1,8 @@
+wmsubscription_mailchimp.webhook:
+    path: '/mailchimp/webhook'
+    defaults:
+        _controller: 'Drupal\wmsubscription_mailchimp\Controller\WebhookController::show'
+    requirements:
+        _access: 'TRUE'
+    options:
+        _maintenance_access: 'TRUE'

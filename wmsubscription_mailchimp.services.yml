@@ -6,3 +6,12 @@ services:
         class: DrewM\MailChimp\MailChimp
         arguments:
             - '%wmsubscription_mailchimp.api_key%'
+
+    wmsubscription_mailchimp.webhook:
+        class: Drupal\wmsubscription_mailchimp\Webhook
+        arguments:
+            - '@wmsubscription_mailchimp.client'
+
+    logger.channel.wmsubscription_mailchimp:
+        parent: logger.channel_base
+        arguments: ['wmsubscription_mailchimp']

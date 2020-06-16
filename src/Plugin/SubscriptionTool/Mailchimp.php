@@ -93,6 +93,30 @@ class Mailchimp extends SubscriptionToolBase implements ContainerFactoryPluginIn
         }
     }
 
+    public function getSubscriber(ListInterface $list, PayloadInterface $payload): ?PayloadInterface
+    {
+        /** @var Audience $list */
+        /** @var Subscriber $payload */
+        $this->validateArguments($list, $payload);
+
+        $hash = md5(strtolower($payload->getEmail()));
+        $endpoint = sprintf('lists/%s/members/%s', $list->getId(), $hash);
+        $data = $this->client->get($endpoint);
+
+        if ($this->client->success()) {
+            return new Subscriber(
+                $data['email_address'],
+                $data['language'],
+                $data['merge_fields'],
+                $data['interests'],
+                $data['marketing_permissions'],
+                $data['status']
+            );
+        }
+
+        return null;
+    }
+
     public function isSubscribed(ListInterface $list, PayloadInterface $payload): bool
     {
         $status = $this->getSubscriberStatus($list, $payload);

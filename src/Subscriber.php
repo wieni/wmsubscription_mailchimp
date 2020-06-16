@@ -88,6 +88,18 @@ class Subscriber extends PayloadBase
         return $this->marketingPermissions;
     }
 
+    public function getMarketingPermissionById(string $id): ?array
+    {
+        $results = array_filter(
+            $this->getMarketingPermissions(),
+            static function (array $permission) use ($id) {
+                return $permission['marketing_permission_id'] === $id;
+            }
+        );
+
+        return reset($results) ?: null;
+    }
+
     public function setMarketingPermissions(array $value): self
     {
         $this->marketingPermissions = $value;

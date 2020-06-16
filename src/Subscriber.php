@@ -17,6 +17,8 @@ class Subscriber extends PayloadBase
     protected $marketingPermissions;
     /** @var string|null */
     protected $contactStatus;
+    /** @var string|null */
+    protected $originalEmail;
 
     public function __construct(
         string $email,
@@ -24,7 +26,8 @@ class Subscriber extends PayloadBase
         array $mergeFields = [],
         array $interests = [],
         array $marketingPermissions = [],
-        ?string $contactStatus = null
+        ?string $contactStatus = null,
+        ?string $originalEmail = null
     ) {
         parent::__construct($email);
         $this->langcode = $langcode;
@@ -32,6 +35,7 @@ class Subscriber extends PayloadBase
         $this->interests = $interests;
         $this->marketingPermissions = $marketingPermissions;
         $this->contactStatus = $contactStatus;
+        $this->originalEmail = $originalEmail;
     }
 
     public function getLangcode(): ?string
@@ -98,6 +102,17 @@ class Subscriber extends PayloadBase
     public function setContactStatus(?string $value): self
     {
         $this->contactStatus = $value;
+        return $this;
+    }
+
+    public function getOriginalEmail(): ?string
+    {
+        return $this->originalEmail;
+    }
+
+    public function setOriginalEmail(?string $originalEmail): self
+    {
+        $this->originalEmail = $originalEmail;
         return $this;
     }
 }

@@ -44,7 +44,7 @@ class Mailchimp extends SubscriptionToolBase implements ContainerFactoryPluginIn
         /** @var Subscriber $payload */
         $this->validateArguments($list, $payload);
 
-        $hash = md5(strtolower($payload->getEmail()));
+        $hash = md5(strtolower($payload->getOriginalEmail() ?? $payload->getEmail()));
         $endpoint = sprintf('lists/%s/members/%s', $list->getId(), $hash);
         $data = [
             'email_address' => $payload->getEmail(),

@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - Add audience config entity
+- Add support for Drupal 9
 
 ### Removed
 - Removed settings with form in favor of an audience config entity

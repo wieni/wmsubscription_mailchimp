@@ -40,7 +40,7 @@ class AudienceForm extends EntityForm
                 'The Mailchimp audience to subscribe visitors to. For directions on how 
                 you can find your audience ID, please refer to the <a href="@websiteUrl" target="_blank" 
                 rel="noopener noreferer">Mailchimp website</a>.',
-                ['@websiteUrl' => 'https://mailchimp.com/help/find-audience-id'],
+                ['@websiteUrl' => 'https://mailchimp.com/help/find-audience-id']
             ),
             '#default_value' => $this->entity->id(),
             '#disabled' => !$this->entity->isNew(),

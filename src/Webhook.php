@@ -42,7 +42,7 @@ class Webhook
                     'user' => true,
                 ],
                 'url' => $this->getWebhookUrl(),
-            ],
+            ]
         );
     }
 

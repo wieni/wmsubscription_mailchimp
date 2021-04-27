@@ -38,7 +38,7 @@ class Mailchimp extends SubscriptionToolBase implements ContainerFactoryPluginIn
         return $instance;
     }
 
-    public function addSubscriber(ListInterface $list, PayloadInterface $payload, string $operation = self::OPERATION_CREATE_OR_UPDATE): void
+    public function addSubscriber(ListInterface $list, PayloadInterface $payload, array $tags, string $operation = self::OPERATION_CREATE_OR_UPDATE): void
     {
         /** @var Audience $list */
         /** @var Subscriber $payload */
@@ -57,6 +57,10 @@ class Mailchimp extends SubscriptionToolBase implements ContainerFactoryPluginIn
             $data['language'] = $langcode;
         }
 
+        if (!empty($tags)){
+            $data['tags'] = $tags;
+        }
+
         if ($interests = $payload->getInterests()) {
             $data['interests'] = $interests;
         }
@@ -68,7 +72,7 @@ class Mailchimp extends SubscriptionToolBase implements ContainerFactoryPluginIn
         } elseif ($operation === self::OPERATION_UPDATE) {
             $verb = 'patch';
         }
-
+        
         $this->client->{$verb}($endpoint, $data);
 
         if (!$this->client->success()) {

@@ -31,14 +31,15 @@ class Mailchimp extends SubscriptionToolBase implements ContainerFactoryPluginIn
         array $configuration,
         $pluginId,
         $pluginDefinition
-    ) {
+    )
+    {
         $instance = new static($configuration, $pluginId, $pluginDefinition);
         $instance->client = $container->get('wmsubscription_mailchimp.client');
 
         return $instance;
     }
 
-    public function addSubscriber(ListInterface $list, PayloadInterface $payload, array $tags, string $operation = self::OPERATION_CREATE_OR_UPDATE): void
+    public function addSubscriber(ListInterface $list, PayloadInterface $payload, string $operation = self::OPERATION_CREATE_OR_UPDATE): void
     {
         /** @var Audience $list */
         /** @var Subscriber $payload */
@@ -57,7 +58,7 @@ class Mailchimp extends SubscriptionToolBase implements ContainerFactoryPluginIn
             $data['language'] = $langcode;
         }
 
-        if (!empty($tags)){
+        if (!empty($tags = $payload->getTags())) {
             $data['tags'] = $tags;
         }
 
@@ -72,7 +73,7 @@ class Mailchimp extends SubscriptionToolBase implements ContainerFactoryPluginIn
         } elseif ($operation === self::OPERATION_UPDATE) {
             $verb = 'patch';
         }
-        
+
         $this->client->{$verb}($endpoint, $data);
 
         if (!$this->client->success()) {
@@ -94,6 +95,21 @@ class Mailchimp extends SubscriptionToolBase implements ContainerFactoryPluginIn
             }
 
             throw new SubscriptionException($this->client->getLastError());
+        }
+    }
+
+    protected function validateArguments(ListInterface $list, PayloadInterface $payload)
+    {
+        if (!$list instanceof Audience) {
+            throw new RuntimeException(
+                sprintf('%s is not an instance of Drupal\wmsubscription_mailchimp\Mailchimp\Audience!', get_class($list))
+            );
+        }
+
+        if (!$payload instanceof Subscriber) {
+            throw new RuntimeException(
+                sprintf('%s is not an instance of Drupal\wmsubscription_mailchimp\Mailchimp\Subscriber!', get_class($payload))
+            );
         }
     }
 
@@ -129,11 +145,6 @@ class Mailchimp extends SubscriptionToolBase implements ContainerFactoryPluginIn
             && in_array($status, ['subscribed', 'pending']);
     }
 
-    public function isUpdatable(ListInterface $list, PayloadInterface $payload): bool
-    {
-        return $this->getSubscriberStatus($list, $payload) !== null;
-    }
-
     protected function getSubscriberStatus(ListInterface $list, PayloadInterface $payload): ?string
     {
         /** @var Audience $list */
@@ -151,18 +162,8 @@ class Mailchimp extends SubscriptionToolBase implements ContainerFactoryPluginIn
         return null;
     }
 
-    protected function validateArguments(ListInterface $list, PayloadInterface $payload)
+    public function isUpdatable(ListInterface $list, PayloadInterface $payload): bool
     {
-        if (!$list instanceof Audience) {
-            throw new RuntimeException(
-                sprintf('%s is not an instance of Drupal\wmsubscription_mailchimp\Mailchimp\Audience!', get_class($list))
-            );
-        }
-
-        if (!$payload instanceof Subscriber) {
-            throw new RuntimeException(
-                sprintf('%s is not an instance of Drupal\wmsubscription_mailchimp\Mailchimp\Subscriber!', get_class($payload))
-            );
-        }
+        return $this->getSubscriberStatus($list, $payload) !== null;
     }
 }

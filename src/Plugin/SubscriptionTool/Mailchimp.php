@@ -97,11 +97,6 @@ class Mailchimp extends SubscriptionToolBase implements ContainerFactoryPluginIn
         }
     }
 
-    public function isUpdatable(ListInterface $list, PayloadInterface $payload): bool
-    {
-        return $this->getSubscriberStatus($list, $payload) !== null;
-    }
-
     public function getSubscriber(ListInterface $list, PayloadInterface $payload): ?PayloadInterface
     {
         /** @var Audience $list */
@@ -132,6 +127,11 @@ class Mailchimp extends SubscriptionToolBase implements ContainerFactoryPluginIn
 
         return $status !== null
             && in_array($status, ['subscribed', 'pending']);
+    }
+
+    public function isUpdatable(ListInterface $list, PayloadInterface $payload): bool
+    {
+        return $this->getSubscriberStatus($list, $payload) !== null;
     }
 
     protected function getSubscriberStatus(ListInterface $list, PayloadInterface $payload): ?string

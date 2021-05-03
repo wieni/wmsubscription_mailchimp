@@ -31,7 +31,7 @@ class Subscriber extends PayloadBase
         ?string $contactStatus = null,
         ?string $originalEmail = null,
         array $tags = []
-    ){
+    ) {
         parent::__construct($email);
         $this->langcode = $langcode;
         $this->mergeFields = $mergeFields;
@@ -87,6 +87,11 @@ class Subscriber extends PayloadBase
         return $this;
     }
 
+    public function getMarketingPermissions(): array
+    {
+        return $this->marketingPermissions;
+    }
+
     public function getMarketingPermissionById(string $id): ?array
     {
         $results = array_filter(
@@ -97,11 +102,6 @@ class Subscriber extends PayloadBase
         );
 
         return reset($results) ?: null;
-    }
-
-    public function getMarketingPermissions(): array
-    {
-        return $this->marketingPermissions;
     }
 
     public function setMarketingPermissions(array $value): self

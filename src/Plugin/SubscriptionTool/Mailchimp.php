@@ -31,8 +31,7 @@ class Mailchimp extends SubscriptionToolBase implements ContainerFactoryPluginIn
         array $configuration,
         $pluginId,
         $pluginDefinition
-    )
-    {
+    ){
         $instance = new static($configuration, $pluginId, $pluginDefinition);
         $instance->client = $container->get('wmsubscription_mailchimp.client');
 

@@ -31,8 +31,7 @@ class Subscriber extends PayloadBase
         ?string $contactStatus = null,
         ?string $originalEmail = null,
         array $tags = []
-    )
-    {
+    ){
         parent::__construct($email);
         $this->langcode = $langcode;
         $this->mergeFields = $mergeFields;

@@ -19,7 +19,7 @@ class Subscriber extends PayloadBase
     protected $contactStatus;
     /** @var string|null */
     protected $originalEmail;
-    /** @var array */
+    /** @var string[] */
     protected $tags;
 
     public function __construct(

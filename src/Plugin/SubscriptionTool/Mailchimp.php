@@ -31,7 +31,7 @@ class Mailchimp extends SubscriptionToolBase implements ContainerFactoryPluginIn
         array $configuration,
         $pluginId,
         $pluginDefinition
-    ){
+    ) {
         $instance = new static($configuration, $pluginId, $pluginDefinition);
         $instance->client = $container->get('wmsubscription_mailchimp.client');
 
@@ -57,7 +57,7 @@ class Mailchimp extends SubscriptionToolBase implements ContainerFactoryPluginIn
             $data['language'] = $langcode;
         }
 
-        if (!empty($tags = $payload->getTags())) {
+        if ($tags = $payload->getTags()) {
             $data['tags'] = $tags;
         }
 
@@ -97,19 +97,9 @@ class Mailchimp extends SubscriptionToolBase implements ContainerFactoryPluginIn
         }
     }
 
-    protected function validateArguments(ListInterface $list, PayloadInterface $payload)
+    public function isUpdatable(ListInterface $list, PayloadInterface $payload): bool
     {
-        if (!$list instanceof Audience) {
-            throw new RuntimeException(
-                sprintf('%s is not an instance of Drupal\wmsubscription_mailchimp\Mailchimp\Audience!', get_class($list))
-            );
-        }
-
-        if (!$payload instanceof Subscriber) {
-            throw new RuntimeException(
-                sprintf('%s is not an instance of Drupal\wmsubscription_mailchimp\Mailchimp\Subscriber!', get_class($payload))
-            );
-        }
+        return $this->getSubscriberStatus($list, $payload) !== null;
     }
 
     public function getSubscriber(ListInterface $list, PayloadInterface $payload): ?PayloadInterface
@@ -161,8 +151,18 @@ class Mailchimp extends SubscriptionToolBase implements ContainerFactoryPluginIn
         return null;
     }
 
-    public function isUpdatable(ListInterface $list, PayloadInterface $payload): bool
+    protected function validateArguments(ListInterface $list, PayloadInterface $payload)
     {
-        return $this->getSubscriberStatus($list, $payload) !== null;
+        if (!$list instanceof Audience) {
+            throw new RuntimeException(
+                sprintf('%s is not an instance of Drupal\wmsubscription_mailchimp\Mailchimp\Audience!', get_class($list))
+            );
+        }
+
+        if (!$payload instanceof Subscriber) {
+            throw new RuntimeException(
+                sprintf('%s is not an instance of Drupal\wmsubscription_mailchimp\Mailchimp\Subscriber!', get_class($payload))
+            );
+        }
     }
 }

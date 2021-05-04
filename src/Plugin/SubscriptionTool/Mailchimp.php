@@ -57,6 +57,10 @@ class Mailchimp extends SubscriptionToolBase implements ContainerFactoryPluginIn
             $data['language'] = $langcode;
         }
 
+        if ($tags = $payload->getTags()) {
+            $data['tags'] = $tags;
+        }
+
         if ($interests = $payload->getInterests()) {
             $data['interests'] = $interests;
         }

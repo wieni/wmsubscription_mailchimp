@@ -19,6 +19,8 @@ class Subscriber extends PayloadBase
     protected $contactStatus;
     /** @var string|null */
     protected $originalEmail;
+    /** @var string[] */
+    protected $tags;
 
     public function __construct(
         string $email,
@@ -27,7 +29,8 @@ class Subscriber extends PayloadBase
         array $interests = [],
         array $marketingPermissions = [],
         ?string $contactStatus = null,
-        ?string $originalEmail = null
+        ?string $originalEmail = null,
+        array $tags = []
     ) {
         parent::__construct($email);
         $this->langcode = $langcode;
@@ -36,6 +39,7 @@ class Subscriber extends PayloadBase
         $this->marketingPermissions = $marketingPermissions;
         $this->contactStatus = $contactStatus;
         $this->originalEmail = $originalEmail;
+        $this->tags = $tags;
     }
 
     public function getLangcode(): ?string
@@ -125,6 +129,17 @@ class Subscriber extends PayloadBase
     public function setOriginalEmail(?string $originalEmail): self
     {
         $this->originalEmail = $originalEmail;
+        return $this;
+    }
+
+    public function getTags(): array
+    {
+        return $this->tags;
+    }
+
+    public function setTags(array $value): self
+    {
+        $this->tags = $value;
         return $this;
     }
 }

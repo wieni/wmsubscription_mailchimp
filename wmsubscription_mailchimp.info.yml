@@ -2,8 +2,7 @@ name: wmsubscription_mailchimp
 type: module
 description: Provides a Mailchimp implementation for the wmsubscription module
 package: Wieni
-core: 8.x
-core_version_requirement: ^8 || ^9
+core_version_requirement: ^9 || ^10
 dependencies:
     - drupal:system (>= 8.5)
     - wmsubscription

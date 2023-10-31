@@ -21,6 +21,8 @@ It can be installed using Composer:
 Don't forget to provide a Mailchimp API key through the 
 `wmsubscription_mailchimp.api_key` container parameter.
 
+Additional tutorial can be found in the [Wieni handbook](https://github.com/wieni/handbook/blob/main/engineering/drupal/modules/wmsubscription/index.html.md)
+
 ## Changelog
 All notable changes to this project will be documented in the
 [CHANGELOG](CHANGELOG.md) file.
